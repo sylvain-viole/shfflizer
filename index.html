@@ -3,7 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="robots" content="index, follow" />
+
     <title>Shfflizer</title>
+
+    <!-- SEO -->
+    <meta property="og:title" content="shfflizer || Choice helper" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://sylvavio.github.io/shfflizer/" />
+    <meta property="og:image" content="" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://sylvavio.github.io/shfflizer/" />
+    <meta name="twitter:title" content="shfflizer || Choice helper." />
+    <meta
+      name="twitter:description"
+      content="Shfflizer is a simple decision helper app."
+    />
+    <meta name="twitter:image" content="" />
+
+    <meta
+      name="description"
+      content="Shfflizer is a simple decision helper app."
+    />
+    <meta
+      property="og:description"
+      content="Shfflizer is a simple decision helper app."
+    />
+    <meta
+      property="twitter:description"
+      content="Shfflizer is a simple decision helper app."
+    />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="./manifest.json">
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -11,27 +45,23 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;900&family=Righteous&display=swap"
       rel="stylesheet"
     />
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule=""
-      src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"
-    ></script>
-
-    <!-- CSS -->
+    <!-- 
+      CSS 
+    -->
     <!-- Tailwind -->
     <link rel="stylesheet" href="./public/build/tailwind.css" />
     <!-- own css -->
     <link rel="stylesheet" href="./CSS/own_css.css" />
   </head>
-  <body class="bg-gray-50 h-screen mx-auto flex flex-col">
-    <!-- 
+<!-- 
+---------------------------  CONTENT 
+-->
+  <body class="bg-gray-50 mx-auto flex flex-col">
+<!-- 
 
-      MODALE
+MODALE
 
-     -->
+-->
     <div id="modale" class="absolute w-full h-full">
       <div id="modale__cache" class="w-full h-full bg-opacity-80 bg-gray-500">
         <div
@@ -60,19 +90,19 @@
         </div>
       </div>
     </div>
-    <!-- 
+<!-- 
 
-      BRAND
+BRAND
 
-     -->
+-->
     <div class="container mx-auto pt-4 md:pt-16 flex flex-col" id="brand">
       <h1 id="#brand" class="text-5xl text-center cursor-pointer">SHFFLIZER</h1>
     </div>
-    <!-- 
-        
-        INDEX 
-      
-      -->
+<!-- 
+
+INDEX 
+
+-->
     <div id="index" class="active__div flex flex-col flex-grow">
       <div class="p-3" id="index__subtitle">
         <div>
@@ -99,12 +129,11 @@
         </div>
       </div>
     </div>
-    <!-- 
-        
-        OWN MODE 
-      
-      -->
+<!-- 
 
+OWN MODE 
+
+-->
     <div id="own" class="flex flex-col flex-grow justify p-3">
       <div class="p-3" id="own__subtitle">
         <h2 class="text-2xl text-center mt-2">What choices do you have ?</h2>
@@ -130,12 +159,11 @@
       <button id="validate" class="btn-lg">Ok</button>
       <div id="option__validation" class="text-center"></div>
     </div>
-    <!-- 
-        
-        VALIDATION 
-      
-      -->
+<!-- 
 
+VALIDATION 
+
+-->
     <div id="validation" class="flex flex-col flex-grow justify p-3">
       <div class="p-3" id="validation__subtitle">
         <h2 class="text-2xl text-center mt-2">Let's recap</h2>
@@ -150,22 +178,22 @@
         <button id="validation-ok__btn" class="btn">Let's Go</button>
       </div>
     </div>
-    <!-- 
+<!-- 
 
+LOAD
 
-      LOAD
-
-     -->
-    <div id="load" class="m-3 flex-grow flex flex-col justify-center text-center">
+-->
+    <div
+      id="load"
+      class="m-3 flex-grow flex flex-col justify-center text-center"
+    >
       <h2 class="animate-bounce text-4xl font-bold text-primary">PROCESSING</h2>
     </div>
+<!-- 
 
-    <!-- 
+REVERT
 
-
-      REVERT
-
-     -->
+-->
     <div id="revert" class="m-3 flex flex-col flex-grow text-center">
       <div
         class="my-8 flex-grow flex flex-col justify-center"
@@ -183,12 +211,11 @@
         <button class="home__btn btn">Home</button>
       </div>
     </div>
+<!-- 
 
-    <!-- 
+RESULT
 
-      RESULT
-
-     -->
+-->
     <div id="result" class="m-3 flex flex-col flex-grow text-center">
       <div class="my-8" id="result__title">
         <h2 id="result__top" class="text-2xl text-center"></h2>
@@ -206,11 +233,11 @@
       </div>
     </div>
 
-    <!-- 
+<!-- 
 
 FOOTER
 
-       -->
+-->
     <div class="mt-4 flex justify-center text-xs" id="footer">
       Copyright Sylvavio 2020
     </div>

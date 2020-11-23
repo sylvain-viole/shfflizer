@@ -1,16 +1,22 @@
-h1 {
-font-weight: bold;
-}
 
 body {
+  height: 80vh;
   max-width: 800px;
   max-height: 800px;
+}
+
+h1 {
+font-weight: bold;
 }
 
 h1:after {
   content: "beta";
   color: #ffa45b;
   font-size: 0.8rem;
+}
+
+#modale, #own, #validation, #load, #revert, #result {
+  display : none;
 }
 
 #modale {
@@ -30,6 +36,3 @@ h1:after {
   overflow-y: scroll;
 }
 
-#modale, #own, #validation, #load, #revert, #result {
-  display : none;
-}

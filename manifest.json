@@ -1,0 +1,11 @@
+{
+  "name": "Shfflizer",
+  "short_name": "Shfflizer",
+  "start_url": "https://sylvavio.github.io/shfflizer/",
+  "display": "fullscreen",
+  "related_applications": [
+    {
+      "platform": "web"
+    }
+  ]
+}

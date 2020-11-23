@@ -2,193 +2,183 @@
 
 let optionArray = [];
 
-const topResultArray= [
+const topResultArray = [
   "And the answer is...",
   "Easy one :",
   "Admit it...",
   "I can't think of nothing else but...",
-  "Trust me..."
-]
-const bottomResultArray= [
+  "Trust me...",
+];
+const bottomResultArray = [
   "... And you knew it !",
   "Could have figured it on your own!",
   "... There's no other way.",
   "Let's say that'll do...",
-  "I never lie to humans."
-]
+  "I never lie to humans.",
+];
 
 // DOM elements
 $(document).ready(function () {
-  // BTNS
-  const addBtnOwn = $("#add__btn");
-  const resetBtn = $('#reset');
-  const validateBtn = $('#validate');
-  const ownModeBtn = $('#own-mode__btn');
-  const validationEditBtn = $("#validation-edit__btn");
-  const validationOkBtn = $("#validation-ok__btn");
-  const yesNoModeBtn = $("#yesno-mode__btn");
-  const revertModeBtn = $('#revert-mode__btn');
-  const homeBtn = $(".home__btn");
-  const modaleCloseBtn = $('#modale__close')
-  const modaleOkBtn = $('#modale__ok')
-
-  // DIVS
-  const brand = $('#brand')
-
-  const indexDiv = $('#index')
-  const ownModeDiv = $('#own')
-  const validationDiv = $('#validation')
-  const validationContainer = $('#validation__container')
-  const loadDiv = $('#load')
-  const revertModeDiv = $('#revert')
-  const resultDiv = $('#result')
-  const resultTopContainer = $('#result__top')
-  const resultContainer = $('#result__container')
-  const resultBottomContainer = $('#result__bottom')
-  const input = $("#add__text-input");
-  const optionList = $("#list__container");
-
 
   //  EVENTS
 
   // Brand
-  brand.on('click', () => {
-    if (!indexDiv.hasClass('active__div')) {
-      const divToDisappear = $('.active__div') 
-      transition(divToDisappear, indexDiv, false);
+  $("#brand").on("click", () => {
+    if (!$('#index').hasClass("active__div")) {
+      transition($(".active__div"), $('#index'), false);
     } else return;
-  })
+  });
 
-  //  Modes BTN
-  ownModeBtn.on('click', () => {
-    transition(indexDiv, ownModeDiv, false)
-  })
-  yesNoModeBtn.on('click', () => {
-    transition(indexDiv, resultDiv, true)
-    const result = shfflizer(['Yes', 'No']);
+  /*
+  INDEX 
+  */
+
+  //  ownMode
+  $("#own-mode__btn").on("click", () => {
+    transition($("#index"), $("#own"), false);
+  });
+
+  //  yesNoMode
+  $("#yesno-mode__btn").on("click", () => {
+    transition($('#index'), $('#result'), true);
+    const result = shfflizer(["Yes", "No"]);
     displayResult(result);
-  })
-  revertModeBtn.on('click', () => {
-    transition(indexDiv, revertModeDiv, false)
-  })
+  });
 
-  // Modale
-  modaleCloseBtn.on('click', () => {
-    closeModale();
-  })
-  modaleOkBtn.on('click', () => {
-    closeModale();
-  })
+  // revertMode
+  $("#revert-mode__btn").on("click", () => {
+    transition($("#index"), $("#revert"), false);
+  });
 
-  // Home Btn
-  homeBtn.on('click', () => {
-    const outDiv = $('.active__div')
-    transition(outDiv, indexDiv);
-  })
+  /*
+  OWN
+  */
 
   // Own mode
-  addBtnOwn.on('click', () => {
-    addItem(input.val());
+  $("#add__btn").on("click", () => {
+    addItem($("#add__text-input").val());
   });
 
-  input.on('keypress', (event) => {
+  $("#add__text-input").on("keypress", (event) => {
     if (event.which == 13) {
-      addItem(input.val())
+      addItem($("#add__text-input").val());
     }
   });
-  
-  $("body").delegate(".delete-trigger", 'click', (listLine) => {
+
+  $("body").delegate(".delete-trigger", "click", (listLine) => {
     retrieveItem($(listLine.currentTarget));
   });
 
-  resetBtn.on('click', () => {
+  $("#reset").on("click", () => {
     for (let i = 0; i < optionArray.length; i++) {
       $(".list__item").last().detach();
     }
     optionArray = [];
   });
 
-  validateBtn.on('click', () => {
+  $("#validate").on("click", () => {
     if (optionArray.length > 1) {
       for (let element of optionArray) {
-        validationContainer.append(`<p class="border-gray-600 rounded-md border-2">${element}</p>`)
+        $("#validation__container").append(
+          `<p class="border-gray-600 rounded-md border-2">${element}</p>`
+        );
       }
-      transition(ownModeDiv, validationDiv, false);
+      transition($("#own"), $("#validation"), false);
     } else {
-      openModale('Not enough options!')
+      openModale("Not enough options!");
     }
-  })
+  });
+
+  /* 
+  Modale
+  */
+
+  $("#modale__close").on("click", () => {
+    closeModale();
+  });
+  $("#modale__ok").on("click", () => {
+    closeModale();
+  });
+
+  // Home Btn
+  $(".home__btn").on("click", () => {
+    const outDiv = $(".active__div");
+    transition(outDiv, $('#index'));
+  });
 
   // Validation
 
-  validationEditBtn.on('click', () => {
-    validationContainer.children().detach();
-    transition(validationDiv, ownModeDiv, false);
-  })
+  $("#validation-edit__btn").on("click", () => {
+    $("#validation__container").children().detach();
+    transition($("#validation"), $("#own"), false);
+  });
 
-  validationOkBtn.on('click', () => {
+  $("#validation-ok__btn").on("click", () => {
     const result = shfflizer(optionArray);
-    validationContainer.children().detach();
+    $("#validation__container").children().detach();
     displayResult(result);
-    transition(validationDiv, resultDiv, true);
-  })
+    transition($("#validation"), $("#result"), true);
+  });
 
+  /*
+   FUNCTIONS
+  */
 
-
-
-  // FUNCTIONS
 
   // Display results
   function displayResult(mainResult) {
     const topResult = shfflizer(topResultArray);
     const bottomResult = shfflizer(bottomResultArray);
-    resultTopContainer.text(topResult);
-    resultBottomContainer.text(bottomResult);
+    $("#result__top").text(topResult);
+    $("#result__bottom").text(bottomResult);
     dynamicFontSize(mainResult);
-    resultContainer.text(mainResult)
+    $("#result__container").text(mainResult);
   }
 
   // Modale
   function openModale(text) {
-    $('#modale__body p').text(text)
-    $("#modale").fadeIn(250)
+    $("#modale__body p").text(text);
+    $("#modale").fadeIn(250);
   }
-  
   function closeModale() {
-    $("#modale").fadeOut(250)
+    $("#modale").fadeOut(250);
   }
+
   // Transition
   function transition(outDiv, inDiv, load) {
     outDiv.fadeOut(200);
-    outDiv.removeClass('active__div')
-    if(load) {
+    outDiv.removeClass("active__div");
+    if (load) {
       setTimeout(() => {
-        loadDiv.fadeIn(200).css('display','flex');
+        $("#load").fadeIn(200).css("display", "flex");
       }, 201);
       setTimeout(() => {
-        transition(loadDiv, inDiv, false)
+        transition($("#load"), inDiv, false);
       }, 3000);
       return;
     }
     setTimeout(() => {
-      inDiv.fadeIn(200).css('display','flex');
-      inDiv.addClass('active__div')
+      inDiv.fadeIn(200).css("display", "flex");
+      inDiv.addClass("active__div");
     }, 201);
   }
+  
 
 
+  // ADD ITEM TO LIST
   function addItem(item) {
     if (!item) {
-      openModale("You did'nt write anything !")
+      openModale("You did'nt write anything !");
     } else if (optionArray.includes(item)) {
       openModale("You already entrered this option");
     } else {
       optionArray.push(item);
       appendList(item);
     }
-    input.val("");
+    $("#add__text-input").val("");
   }
 
+  // DISPLAYS ITEM IN DOM
   function appendList(item) {
     let listItemContent = `<div class="list__item flex flex-row">`;
     listItemContent += `<div class="w-11/12 px-2 h-full self-center">`;
@@ -198,44 +188,44 @@ $(document).ready(function () {
     listItemContent += `<button class="delete-trigger text-5xl focus:outline-none">-</button>`;
     listItemContent += `</div>`;
     listItemContent += `</div>`;
-    optionList.append(listItemContent);
+    $("#list__container").append(listItemContent);
   }
 
+  // RETRIEVES ITEM FROM ARRAY
   function retrieveItem(item) {
     const itemToDelete = item.parent().prev().text();
     const itemIndexInOptionArray = optionArray.indexOf(itemToDelete);
     optionArray.splice(itemIndexInOptionArray, 1);
-    retrieveList(item)
+    retrieveList(item);
   }
 
+
+  // RETRIEVES ITEM FROM DOM
   function retrieveList(item) {
     const deleteTarget = item.parent().parent();
     deleteTarget.detach();
   }
-  
+
+
+  // ADAPT FONT SIZE
   function dynamicFontSize(result) {
     const resultLength = result.length;
     if (resultLength < 5) {
-      resultContainer.css('font-size', '8rem')
-    } else if ((resultLength >= 5) && (resultLength < 10)) {
-      resultContainer.css('font-size', '5rem')
-    } else if ((resultLength >= 10) && (resultLength <= 50)) {
-      resultContainer.css('font-size', '2rem')
+      $("#result__container").css("font-size", "8rem");
+    } else if (resultLength >= 5 && resultLength < 10) {
+      $("#result__container").css("font-size", "5rem");
+    } else if (resultLength >= 10 && resultLength <= 50) {
+      $("#result__container").css("font-size", "2rem");
     } else {
-      resultContainer.css('font-size', '1rem')
+      $("#result__container").css("font-size", "1rem");
     }
   }
-  
+
+
+  // RANDOM
   function shfflizer(array) {
-    const resultIndex = Math.floor((Math.random()*array.length)) ;
+    const resultIndex = Math.floor(Math.random() * array.length);
     const resultValue = array[resultIndex];
-    return resultValue
-  
+    return resultValue;
   }
-
-
-
 });
-
-
-
