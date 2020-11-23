@@ -1,3 +1,13 @@
 h1 {
 font-weight: bold;
 }
+
+#modale__content {
+  left: 5vw;
+  top: 10vh;
+  width: 90vw;
+}
+
+#modale, #own__content, #yes-no__content, #revert__content, #result__content {
+  display : none;
+}
