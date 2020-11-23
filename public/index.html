@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shufflizer</title>
+    <title>Shfflizer</title>
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -26,23 +26,27 @@
     <!-- own css -->
     <link rel="stylesheet" href="./build/own_css.css" />
   </head>
-  <body class="bg-gray-50">
+  <body class="bg-gray-50 h-screen mx-auto flex flex-col">
     <!-- 
 
       MODALE
 
      -->
-    <div
-      id="modale"
-      class="absolute w-full h-full"
-    >
+    <div id="modale" class="absolute w-full h-full">
       <div id="modale__cache" class="w-full h-full bg-opacity-80 bg-gray-500">
         <div
           id="modale__content"
           class="absolute rounded-md border-4 border-black flex flex-col bg-gray-200 shadow-lg"
         >
           <div id="modale__head" class="text-right">
-            <button id="modale__close" type="button" class="px-3 text-5xl focus:outline-none" data-dismiss="modale">&times;</button>
+            <button
+              id="modale__close"
+              type="button"
+              class="px-3 text-5xl focus:outline-none"
+              data-dismiss="modale"
+            >
+              &times;
+            </button>
           </div>
           <div
             id="modale__body"
@@ -61,37 +65,35 @@
       BRAND
 
      -->
-    <div class="container mx-auto p-5 flex flex-col" id="brand">
-      <div class="h-16">
-        <h1 id="#brand" class="text-5xl text-center cursor-pointer">SHUFFLIZER</h1>
-      </div>
+    <div class="container mx-auto pt-4 md:pt-16 flex flex-col" id="brand">
+      <h1 id="#brand" class="text-5xl text-center cursor-pointer">SHFFLIZER</h1>
     </div>
     <!-- 
         
         INDEX 
       
       -->
-    <div id="index__content" class="active__div">
-      <div class="p-3" id="subtitle">
+    <div id="index" class="active__div flex flex-col flex-grow">
+      <div class="p-3" id="index__subtitle">
         <div>
           <h2 class="text-2xl text-center">
-            Having trouble deciding ? Let Shufflizer help you thru.
+            Having trouble deciding ? Let Shfflizer help you thru.
           </h2>
-          <p class="text-center">
+          <p class="text-center mt-2">
             Simple decision making utility running in 3 modes.
           </p>
         </div>
       </div>
-      <div class="flex-grow mt-16">
-        <div class="flex flex-col items-center m-5">
+      <div class="flex flex-col flex-grow justify-center gap-8">
+        <div class="flex flex-col items-center">
           <button id="own-mode__btn" class="btn-lg">Own Mode</button>
           <p>Name what to shuffle thru</p>
         </div>
-        <div id="yesno-mode__btn" class="flex flex-col items-center m-5">
+        <div id="yesno-mode__btn" class="flex flex-col items-center">
           <button class="btn-lg">Yes No Mode</button>
           <p>Simple 2 choices mode</p>
         </div>
-        <div class="flex flex-col items-center m-5">
+        <div class="flex flex-col items-center">
           <button id="revert-mode__btn" class="btn-lg">Revert Mode</button>
           <p>Your time to choose !</p>
         </div>
@@ -103,9 +105,12 @@
       
       -->
 
-    <div id="own__content" class="max-w-screen-md mx-auto p-3">
-      <div id="option__container" class="m-2">
-        <div id="add__container" class="flex flex-row">
+    <div id="own" class="flex flex-col flex-grow justifyp-3">
+      <div class="p-3" id="own__subtitle">
+        <p class="text-center mt-2">What are you hesitating between ?</p>
+      </div>
+      <div id="option__container" class="flex flex-col flex-grow">
+        <div id="add__container" class="flex flex-row mt-8">
           <input
             class="p-2 rounded-lg w-11/12 align-middle"
             type="text"
@@ -117,12 +122,13 @@
             <button class="text-5xl focus:outline-none">+</button>
           </div>
         </div>
+        <div id="list__container"></div>
       </div>
       <div id="option__reset" class="text-right">
         <button id="reset" class="btn">Reset</button>
       </div>
       <div id="option__validation" class="text-center">
-        <button id="validate" class="btn">Shufflize This !</button>
+        <button id="validate" class="btn">Shfflize This !</button>
       </div>
     </div>
     <!-- 
@@ -131,29 +137,43 @@
       Yes No
 
      -->
-     <div id="yes-no__content">YES NO MODE</div>
-     
+    <div id="yes-no">YES NO MODE</div>
+
     <!-- 
 
 
       REVERT
 
      -->
-     <div id="revert__content">REVERT MODE</div>
+    <div id="revert">REVERT MODE</div>
 
     <!-- 
 
       RESULT
 
      -->
-     <div id="result__content">RESULT</div>
+    <div id="result" class="m-3 flex flex-col flex-grow text-center">
+      <div class="my-8" id="result__title">
+        <h2 class="text-2xl text-center">And the answer is ...</h2>
+      </div>
+      <div
+          class="flex flex-col justify-center flex-grow text-center font-bold break-words">
+          <p id="result__container"></p>
+      </div>
+      <div class="my-8">
+        <h2 id="result__subtitle" class="text-2xl text-center">...you knew it!</h2>
+      </div>
+      <div>
+        <button id="result-back__btn" class="btn">Back</button>
+      </div>
+    </div>
 
     <!-- 
 
 FOOTER
 
        -->
-    <div class="h-8 flex justify-center text-xs" id="footer">
+    <div class="mt-4 flex justify-center text-xs" id="footer">
       Copyright Sylvavio 2020
     </div>
 

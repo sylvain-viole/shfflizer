@@ -4,7 +4,7 @@
 
 @layer components {
   .btn-lg {
-    @apply border-solid border-black border-2 rounded-lg p-5 m-2 outline-none focus:outline-none; 
+    @apply border-solid border-black border-2 rounded-lg px-5 m-2 outline-none focus:outline-none; 
   }
   .btn {
     @apply border-solid border-black border-2 rounded-lg py-1 px-3 m-2 shadow-md bg-primary transition duration-norm hover:bg-primary_over font-bold outline-none focus:outline-none; 
