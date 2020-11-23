@@ -77,20 +77,20 @@
       <div class="p-3" id="index__subtitle">
         <div>
           <h2 class="text-2xl text-center">
-            Having trouble deciding ? Let Shfflizer help you thru.
+            Having trouble making decisions ? Let Shfflizer help you thru.
           </h2>
           <p class="text-center mt-2">
-            Simple decision making utility running in 3 modes.
+            Simple choice helper utility running in 3 modes.
           </p>
         </div>
       </div>
-      <div class="flex flex-col flex-grow justify-center gap-8">
+      <div class="flex flex-col flex-grow justify-center gap-12">
         <div class="flex flex-col items-center">
-          <button id="own-mode__btn" class="btn-lg">Own Mode</button>
-          <p>Name what to shuffle thru</p>
+          <button id="own-mode__btn" class="btn-lg">Your Mode</button>
+          <p>Name what you hesitate on</p>
         </div>
-        <div id="yesno-mode__btn" class="flex flex-col items-center">
-          <button class="btn-lg">Yes No Mode</button>
+        <div class="flex flex-col items-center">
+          <button id="yesno-mode__btn" class="btn-lg">Yes No Mode</button>
           <p>Simple 2 choices mode</p>
         </div>
         <div class="flex flex-col items-center">
@@ -105,9 +105,9 @@
       
       -->
 
-    <div id="own" class="flex flex-col flex-grow justifyp-3">
+    <div id="own" class="flex flex-col flex-grow justify p-3">
       <div class="p-3" id="own__subtitle">
-        <p class="text-center mt-2">What are you hesitating between ?</p>
+        <h2 class="text-2xl text-center mt-2">What choices do you have ?</h2>
       </div>
       <div id="option__container" class="flex flex-col flex-grow">
         <div id="add__container" class="flex flex-row mt-8">
@@ -116,7 +116,7 @@
             type="text"
             name=""
             id="add__text-input"
-            placeholder="Type in your option"
+            placeholder="Type in your options"
           />
           <div id="add__btn" class="w-1/12 place-self-center text-center">
             <button class="text-5xl focus:outline-none">+</button>
@@ -125,10 +125,10 @@
         <div id="list__container"></div>
       </div>
       <div id="option__reset" class="text-right">
-        <button id="reset" class="btn">Reset</button>
+        <button id="reset" class="btn-nobg">Reset</button>
       </div>
+      <button id="validate" class="btn-lg">Shfflize This !</button>
       <div id="option__validation" class="text-center">
-        <button id="validate" class="btn">Shfflize This !</button>
       </div>
     </div>
     <!-- 
@@ -145,7 +145,18 @@
       REVERT
 
      -->
-    <div id="revert">REVERT MODE</div>
+    <div id="revert" class="m-3 flex flex-col flex-grow text-center">
+      <div class="my-8 flex-grow flex flex-col justify-center" id="revert__title">
+        <div>
+          <h2 id="revert__top" class="text-2xl self-center">Not available YET</h2>
+          <p class="self-center">Sorry about that</p>
+        </div>
+      </div>
+
+      <div>
+        <button class="home__btn btn">Home</button>
+      </div>
+    </div>
 
     <!-- 
 
@@ -154,17 +165,18 @@
      -->
     <div id="result" class="m-3 flex flex-col flex-grow text-center">
       <div class="my-8" id="result__title">
-        <h2 class="text-2xl text-center">And the answer is ...</h2>
+        <h2 id="result__top" class="text-2xl text-center"></h2>
       </div>
       <div
-          class="flex flex-col justify-center flex-grow text-center font-bold break-words">
-          <p id="result__container"></p>
+        class="flex flex-col justify-center flex-grow text-center font-bold break-words"
+      >
+        <p id="result__container"></p>
       </div>
       <div class="my-8">
-        <h2 id="result__subtitle" class="text-2xl text-center">...you knew it!</h2>
+        <h2 id="result__bottom" class="text-2xl text-center"></h2>
       </div>
       <div>
-        <button id="result-back__btn" class="btn">Back</button>
+        <button class="home__btn btn">Home</button>
       </div>
     </div>
 

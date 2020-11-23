@@ -13,8 +13,8 @@ body {
   width: 90vw;
 }
 
-#list__container,  {
-  height: 300px;
+#list__container {
+  height: 200px;
   overflow-y: scroll;
 }
 

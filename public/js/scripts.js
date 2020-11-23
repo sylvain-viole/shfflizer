@@ -1,5 +1,23 @@
+// ARRAYS DECLARATION
+
 let optionArray = [];
 
+const topResultArray= [
+  "And the answer is...",
+  "Easy one :",
+  "Admit it...",
+  "I can't think of nothing else but...",
+  "Trust me..."
+]
+const bottomResultArray= [
+  "... And you knew it !",
+  "Could have figured it on your own!",
+  "... There's no other way.",
+  "Let's say that'll do...",
+  "I never lie to humans."
+]
+
+// DOM elements
 $(document).ready(function () {
   // BTNS
   const addBtnOwn = $("#add__btn");
@@ -8,10 +26,11 @@ $(document).ready(function () {
   const ownModeBtn = $('#own-mode__btn');
   const yesNoModeBtn = $("#yesno-mode__btn");
   const revertModeBtn = $('#revert-mode__btn');
-  const resultBackBtn = $("#result-back__btn");
+  const homeBtn = $(".home__btn");
   const modaleCloseBtn = $('#modale__close')
   const modaleOkBtn = $('#modale__ok')
 
+  // DIVS
   const brand = $('#brand')
 
   const indexDiv = $('#index')
@@ -19,11 +38,16 @@ $(document).ready(function () {
   const yesNoModeDiv = $('#yes-no')
   const revertModeDiv = $('#revert')
   const resultDiv = $('#result')
+  const resultTopContainer = $('#result__top')
   const resultContainer = $('#result__container')
-
+  const resultBottomContainer = $('#result__bottom')
   const input = $("#add__text-input");
   const optionList = $("#list__container");
 
+
+  //  EVENTS
+
+  // Brand
   brand.on('click', () => {
     if (!indexDiv.hasClass('active__div')) {
       const divToDisappear = $('.active__div') 
@@ -31,31 +55,34 @@ $(document).ready(function () {
     } else return;
   })
 
+  //  Modes BTN
   ownModeBtn.on('click', () => {
     transition(indexDiv, ownModeDiv)
   })
   yesNoModeBtn.on('click', () => {
     transition(indexDiv, resultDiv)
     const result = shfflizer(['Yes', 'No']);
-    resultContainer.text(result);
+    displayResult(result);
   })
   revertModeBtn.on('click', () => {
     transition(indexDiv, revertModeDiv)
   })
 
+  // Modale
   modaleCloseBtn.on('click', () => {
     closeModale();
   })
-
   modaleOkBtn.on('click', () => {
     closeModale();
   })
 
-  resultBackBtn.on('click', () => {
-    transition(resultDiv, indexDiv);
+  // Home Btn
+  homeBtn.on('click', () => {
+    const outDiv = $('.active__div')
+    transition(outDiv, indexDiv);
   })
 
-
+  // Own mode
   addBtnOwn.on('click', () => {
     addItem(input.val());
   });
@@ -65,13 +92,10 @@ $(document).ready(function () {
       addItem(input.val())
     }
   });
-
   
-    $("body").delegate(".delete-trigger", 'click', (listLine) => {
-      retrieveItem($(listLine.currentTarget));
-    });
-
-  
+  $("body").delegate(".delete-trigger", 'click', (listLine) => {
+    retrieveItem($(listLine.currentTarget));
+  });
 
   resetBtn.on('click', () => {
     for (let i = 0; i < optionArray.length; i++) {
@@ -82,14 +106,28 @@ $(document).ready(function () {
 
   validateBtn.on('click', () => {
     if (optionArray.length > 1) {
+      const mainResult = shfflizer(optionArray);
+      displayResult(mainResult)
       transition(ownModeDiv, resultDiv);
-      const result = shfflizer(optionArray);
-      resultContainer.text(result);
     } else {
       openModale('Not enough options!')
     }
   })
 
+
+  // FUNCTIONS
+
+  // Display results
+  function displayResult(mainResult) {
+    const topResult = shfflizer(topResultArray);
+    const bottomResult = shfflizer(bottomResultArray);
+    resultTopContainer.text(topResult);
+    resultBottomContainer.text(bottomResult);
+    dynamicFontSize(mainResult);
+    resultContainer.text(mainResult)
+  }
+
+  // Modale
   function openModale(text) {
     $('#modale__body p').text(text)
     $("#modale").fadeIn(250)
@@ -98,7 +136,7 @@ $(document).ready(function () {
   function closeModale() {
     $("#modale").fadeOut(250)
   }
-
+  // Transition
   function transition(outDiv, inDiv) {
     outDiv.fadeOut(200);
     setTimeout(() => {
@@ -107,6 +145,7 @@ $(document).ready(function () {
       outDiv.removeClass('active__div')
     }, 201);
   }
+
 
   function addItem(item) {
     if (!item) {
@@ -146,8 +185,10 @@ $(document).ready(function () {
   
   function dynamicFontSize(result) {
     const resultLength = result.length;
-    if (resultLength < 10) {
+    if (resultLength < 5) {
       resultContainer.css('font-size', '8rem')
+    } else if ((resultLength >= 5) && (resultLength < 10)) {
+      resultContainer.css('font-size', '5rem')
     } else if ((resultLength >= 10) && (resultLength <= 50)) {
       resultContainer.css('font-size', '2rem')
     } else {
@@ -156,13 +197,13 @@ $(document).ready(function () {
   }
   
   function shfflizer(array) {
-    console.log(optionArray);
     const resultIndex = Math.floor((Math.random()*array.length)) ;
     const resultValue = array[resultIndex];
-    dynamicFontSize(resultValue);
     return resultValue
   
   }
+
+
 
 });
 

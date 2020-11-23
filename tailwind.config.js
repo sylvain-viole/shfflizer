@@ -8,14 +8,14 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: "#ffa66b",
-        primary_over: "rgb(255, 102, 0)",
+        primary: "#cfd3ce",
+        primary_over: "#ffa45b",
       },
       transitionDuration: {
-        'slw': '1000ms',
-        'norm': '500ms',
-        'fst': '250ms'
-      }
+        slw: "1000ms",
+        norm: "500ms",
+        fst: "250ms",
+      },
     },
   },
   variants: {
