@@ -24,6 +24,8 @@ $(document).ready(function () {
   const resetBtn = $('#reset');
   const validateBtn = $('#validate');
   const ownModeBtn = $('#own-mode__btn');
+  const validationEditBtn = $("#validation-edit__btn");
+  const validationOkBtn = $("#validation-ok__btn");
   const yesNoModeBtn = $("#yesno-mode__btn");
   const revertModeBtn = $('#revert-mode__btn');
   const homeBtn = $(".home__btn");
@@ -35,7 +37,9 @@ $(document).ready(function () {
 
   const indexDiv = $('#index')
   const ownModeDiv = $('#own')
-  const yesNoModeDiv = $('#yes-no')
+  const validationDiv = $('#validation')
+  const validationContainer = $('#validation__container')
+  const loadDiv = $('#load')
   const revertModeDiv = $('#revert')
   const resultDiv = $('#result')
   const resultTopContainer = $('#result__top')
@@ -51,21 +55,21 @@ $(document).ready(function () {
   brand.on('click', () => {
     if (!indexDiv.hasClass('active__div')) {
       const divToDisappear = $('.active__div') 
-      transition(divToDisappear, indexDiv);
+      transition(divToDisappear, indexDiv, false);
     } else return;
   })
 
   //  Modes BTN
   ownModeBtn.on('click', () => {
-    transition(indexDiv, ownModeDiv)
+    transition(indexDiv, ownModeDiv, false)
   })
   yesNoModeBtn.on('click', () => {
-    transition(indexDiv, resultDiv)
+    transition(indexDiv, resultDiv, true)
     const result = shfflizer(['Yes', 'No']);
     displayResult(result);
   })
   revertModeBtn.on('click', () => {
-    transition(indexDiv, revertModeDiv)
+    transition(indexDiv, revertModeDiv, false)
   })
 
   // Modale
@@ -106,13 +110,30 @@ $(document).ready(function () {
 
   validateBtn.on('click', () => {
     if (optionArray.length > 1) {
-      const mainResult = shfflizer(optionArray);
-      displayResult(mainResult)
-      transition(ownModeDiv, resultDiv);
+      for (let element of optionArray) {
+        validationContainer.append(`<p class="border-gray-600 rounded-md border-2">${element}</p>`)
+      }
+      transition(ownModeDiv, validationDiv, false);
     } else {
       openModale('Not enough options!')
     }
   })
+
+  // Validation
+
+  validationEditBtn.on('click', () => {
+    validationContainer.children().detach();
+    transition(validationDiv, ownModeDiv, false);
+  })
+
+  validationOkBtn.on('click', () => {
+    const result = shfflizer(optionArray);
+    validationContainer.children().detach();
+    displayResult(result);
+    transition(validationDiv, resultDiv, true);
+  })
+
+
 
 
   // FUNCTIONS
@@ -137,12 +158,21 @@ $(document).ready(function () {
     $("#modale").fadeOut(250)
   }
   // Transition
-  function transition(outDiv, inDiv) {
+  function transition(outDiv, inDiv, load) {
     outDiv.fadeOut(200);
+    outDiv.removeClass('active__div')
+    if(load) {
+      setTimeout(() => {
+        loadDiv.fadeIn(200).css('display','flex');
+      }, 201);
+      setTimeout(() => {
+        transition(loadDiv, inDiv, false)
+      }, 3000);
+      return;
+    }
     setTimeout(() => {
       inDiv.fadeIn(200).css('display','flex');
       inDiv.addClass('active__div')
-      outDiv.removeClass('active__div')
     }, 201);
   }
 

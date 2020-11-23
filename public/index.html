@@ -36,7 +36,7 @@
       <div id="modale__cache" class="w-full h-full bg-opacity-80 bg-gray-500">
         <div
           id="modale__content"
-          class="absolute rounded-md border-4 border-black flex flex-col bg-gray-200 shadow-lg"
+          class="rounded-md border-4 border-black flex flex-col bg-gray-200 shadow-lg"
         >
           <div id="modale__head" class="text-right">
             <button
@@ -86,7 +86,7 @@
       </div>
       <div class="flex flex-col flex-grow justify-center gap-12">
         <div class="flex flex-col items-center">
-          <button id="own-mode__btn" class="btn-lg">Your Mode</button>
+          <button id="own-mode__btn" class="btn-lg">Input Mode</button>
           <p>Name what you hesitate on</p>
         </div>
         <div class="flex flex-col items-center">
@@ -127,17 +127,38 @@
       <div id="option__reset" class="text-right">
         <button id="reset" class="btn-nobg">Reset</button>
       </div>
-      <button id="validate" class="btn-lg">Shfflize This !</button>
-      <div id="option__validation" class="text-center">
+      <button id="validate" class="btn-lg">Ok</button>
+      <div id="option__validation" class="text-center"></div>
+    </div>
+    <!-- 
+        
+        VALIDATION 
+      
+      -->
+
+    <div id="validation" class="flex flex-col flex-grow justify p-3">
+      <div class="p-3" id="validation__subtitle">
+        <h2 class="text-2xl text-center mt-2">Let's recap</h2>
+        <p class="text-center mt-2">Here's what you want me to choose from :</p>
+      </div>
+      <div
+        id="validation__container"
+        class="flex flex-col flex-grow justify-evenly text-2xl font-bold text-center overflow-ellipsis"
+      ></div>
+      <div class="text-center">
+        <button id="validation-edit__btn" class="btn">Edit</button>
+        <button id="validation-ok__btn" class="btn">Let's Go</button>
       </div>
     </div>
     <!-- 
 
 
-      Yes No
+      LOAD
 
      -->
-    <div id="yes-no">YES NO MODE</div>
+    <div id="load" class="m-3 flex-grow flex flex-col justify-center text-center">
+      <h2 class="animate-bounce text-4xl font-bold text-primary">PROCESSING</h2>
+    </div>
 
     <!-- 
 
@@ -146,9 +167,14 @@
 
      -->
     <div id="revert" class="m-3 flex flex-col flex-grow text-center">
-      <div class="my-8 flex-grow flex flex-col justify-center" id="revert__title">
+      <div
+        class="my-8 flex-grow flex flex-col justify-center"
+        id="revert__title"
+      >
         <div>
-          <h2 id="revert__top" class="text-2xl self-center">Not available YET</h2>
+          <h2 id="revert__top" class="text-2xl self-center">
+            Not available YET
+          </h2>
           <p class="self-center">Sorry about that</p>
         </div>
       </div>
